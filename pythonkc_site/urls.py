@@ -1,10 +1,14 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.defaults import include
+from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import url
+from django.views.generic.simple import direct_to_template
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^/?$', direct_to_template, {'template': 'index.html'}),
     # Examples:
     # url(r'^$', 'pythonkc_site.views.home', name='home'),
     # url(r'^pythonkc_site/', include('pythonkc_site.foo.urls')),
