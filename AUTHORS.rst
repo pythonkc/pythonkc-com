@@ -1,4 +1,0 @@
-Steven Cummings
-Julia Elman
-Mark Ransom
-
