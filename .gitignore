@@ -1,2 +1,3 @@
 .gondor
 *.pyc
+pythonkc_site/pythonkc.sqlite
