@@ -1,0 +1,4 @@
+{% load cache %}
+{% cache 3600 past_events %}
+<section>Past events go here...</section>
+{% endcache %}
