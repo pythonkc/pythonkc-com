@@ -2,3 +2,4 @@ Django==1.3
 gondor==1.0b1.post12
 psycopg2==2.4.1
 South==0.7.3
+git+http://github.com/pythonkc/pythonkc-meetups.git#egg=pythonkc-meetups-git
