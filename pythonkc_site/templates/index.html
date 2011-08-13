@@ -1,46 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="description" content="PythonKC groups website. For all things Python in Kansas City." />
     <meta name="keywords" content="python, kansas city" />
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1.0" />
     <title>PythonKC || For all things Python in Kansas City.</title>
     <link rel="stylesheet" href="{{ STATIC_URL }}screen.css">
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript">
-        function initialize() {
-            var latlng = new google.maps.LatLng(-34.397, 150.644);
-            var myOptions = {
-                zoom: 8,
-                center: latlng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
-        }
-    </script>
-</head>
-<body onload="initialize()">
-    <header>
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header role="banner">
     </header>
-    
-<section>
-    <article>
-        <header>
-        <time>
-            <h1>[upcoming date]</h1>
-            <p>[upcoming time]</p>
-        </time>
-        </header>
-        <h2>[Event title]</h2>
-        <p>[Event descriptiopn]</p>
-        <p class="rsvp">RSVP at</p>
-    </article>
-    <div id="map_canvas" style="width:100%; height:100%"></div>
-</section>
+    <section class="next-meeting">
 
-<footer></footer>
+    <div class="wrap">
+      <article>
+      <header>
+      <time>
+      <h1>[upcoming date]</h1>
+      <p>[upcoming time]</p>
+      </time>
+      </header>
+      <h2>[Event title]</h2>
+      <p>[Event descriptiopn]</p>
+      <p class="rsvp">RSVP at</p>
+      <div id="map_canvas" style="width:100%; height:100%"></div>
+      </article>
+    </div>
+    </section>
 
+    <section id="past-meetups">
+    <div class="wrap">
+      <h1>Past Events</h1> 
+      <div class="slider-controls" id="slider-controls">
+        <a href="#" class="btn-previous btn-control" id="prev"> <span class="prev-arrow"></span></a>
+        <a href="#" class="btn-next btn-control" id="next"><span class="next-arrow"></span></a>
+      </div>
+      <div id="evt-wrapper">
+      {% for event in past_events %}
+      <article>
+      <header>
+      <h1><time datetime>{Date goes here}</time></h1>
+      </header>
+
+      <h2>{}</h2>
+      <p>{summary}</p>
+      <div class="attendees">
+        {% for attendee in attendees %}
+        <img src="" height="" width="" class="attendee" />
+        {% endfor %}
+      </div>
+
+      <figure>
+      <img src="" height="" width="" />
+      </figure>
+      </article>
+      {% endfor %}
+      </div>
+    </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+      </div>
+    </footer>
+  </div>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{STATIC_URL}}jquery.cycle.lite.min.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    var pykc = window.pykc = pykc || {};
+    pykc.map;
+
+    pykc.mapInit = function() {
+      var latlng = new google.maps.LatLng(-34.397, 150.644);
+      var opts = {
+        zoom: 8,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      this.map = new google.maps.Map(document.getElementById("map_canvas"), opts);
+    }
+
+    pykc.resizeMap = function(){
+      this.$mapHolder = this.$mapHolder || $("#map_canvas");
+      this.$mapHolder.width( this.$mapHolder.parent().width()/2);
+      google.maps.event.trigger(this.map, 'resize');
+    }
+
+    pykc.init = function(){
+      $('#evt-wrapper').cycle({ 
+        prev:   '#prev', 
+        next:   '#next', 
+        timeout: 0 
+      });
+      this.mapInit();
+      this.resizeMap()
+      //$(window).resize(function(){ pykc.resizeMap(); });
+    }
+
+    $(function(){ pykc.init(); });
+  </script>
 </body>
 </html>
