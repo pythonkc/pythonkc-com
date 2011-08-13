@@ -1,1 +1,46 @@
-Hello world!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="PythonKC groups website. For all things Python in Kansas City." />
+    <meta name="keywords" content="python, kansas city" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>PythonKC || For all things Python in Kansas City.</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}screen.css">
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        function initialize() {
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+        }
+    </script>
+</head>
+<body onload="initialize()">
+    <header>
+    </header>
+    
+<section>
+    <article>
+        <header>
+        <time>
+            <h1>[upcoming date]</h1>
+            <p>[upcoming time]</p>
+        </time>
+        </header>
+        <h2>[Event title]</h2>
+        <p>[Event descriptiopn]</p>
+        <p class="rsvp">RSVP at</p>
+    </article>
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+</section>
+
+<footer></footer>
+
+</body>
+</html>
