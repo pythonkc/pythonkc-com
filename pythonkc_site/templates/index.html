@@ -79,7 +79,7 @@
     pykc.map;
 
     pykc.mapInit = function() {
-      var latlng = new google.maps.LatLng({{ next_event.venue.lat }}, {{ next_event.venue.lon }});
+      var latlng = new google.maps.LatLng({{ next_event.venue.lat|default:past_events.0.venue.lat|default:-34.397 }}, {{ next_event.venue.lon|default:past_events.0.venue.lon|default:150.644 }});
       var opts = {
         zoom: 8,
         center: latlng,
