@@ -148,7 +148,32 @@ LOGGING = {
     }
 }
 
+
 try:
     from local_settings import *
 except ImportError:
     pass
+
+
+try:
+    # NOTE The GONDOR_REDIS_* settings are placed in local_settings by the 
+    # Gondor runtime.
+    CACHES = {
+        'default': {
+            'BACKEND': 'redis_cache.RedisCache',
+            'LOCATION': '{0}:{1}'.format(GONDOR_REDIS_HOST, GONDOR_REDIS_PORT),
+            'OPTIONS': { # optional
+                'DB': 1,
+                'PASSWORD': GONDOR_REDIS_PASSWORD,
+            }
+        }
+    }
+except NameError:  # If we're not in the Gondor runtime, use memory.
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        }
+    }
+
+
+from meetup_api_key import MEETUP_API_KEY
