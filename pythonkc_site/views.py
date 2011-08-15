@@ -20,7 +20,7 @@ class PythonKCHome(TemplateView):
     template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
-        # NOTE Insteading of individually caching next/past events, we're
+        # NOTE Instead of individually caching next/past events, we're
         # simply going to cache this whole page until things get more
         # complicated (see urls.py for caching decoration).
 
