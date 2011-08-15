@@ -36,12 +36,12 @@
     <div class="wrap">
       <h1>Past Events</h1> 
       <div class="slider-controls" id="slider-controls">
-        <a href="#" class="btn-previous btn-control" id="prev"> <span class="prev-arrow"></span></a>
+        <a href="#" class="btn-previous btn-control disabled" id="prev"> <span class="prev-arrow"></span></a>
         <a href="#" class="btn-next btn-control" id="next"><span class="next-arrow"></span></a>
       </div>
       <div id="evt-wrapper">
       {% for event in past_events %}
-      <article>
+      <article class="past-event">
       <header>
       <h1><time datetime>{{ event.time|date:"F j, Y" }}</time></h1>
       </header>
@@ -49,16 +49,16 @@
       <h2>{{ event.name|safe }}</h2>
       <p>{{ event.description|safe }}</p>
       <div class="attendees">
+          <h3>Attendees ({{event.attendees|length}})</h3>
         {% for attendee in event.attendees %}
           {% if attendee.photo.thumb_url %}
-          <img src="{{ attendee.photo.thumb_url}}" height="" width="" class="attendee"
-               alt="{{ attendee.name }}" />
+          <div title="{{ attendee.name }}" style="background-image: url( {{ attendee.photo.thumb_url }} );" class="attendee"></div>
           {% endif %}
         {% endfor %}
       </div>
 
-      <figure>
-      <img src="" height="" width="" />
+      <figure class="flickr-photo">
+      <a href="{{flickr_url}}"><img src="" height="" width="" /></a>
       </figure>
       </article>
       {% endfor %}
@@ -73,7 +73,6 @@
   </div>
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="{{STATIC_URL}}jquery.cycle.lite.min.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8">
     var pykc = window.pykc = pykc || {};
     pykc.map;
@@ -94,15 +93,44 @@
       google.maps.event.trigger(this.map, 'resize');
     }
 
+    pykc.$slides = $('#evt-wrapper').children();
+    pykc.slideNum = 0;
+
+    pykc.onPrev = function(e){
+        var $ele = pykc.$slides.eq(pykc.slideNum-1);
+        var eloffset = $ele.position().left;
+        e.preventDefault();
+        if (pykc.slideNum === 0) return;
+        eloffset === 0 ?
+            pykc.$slides.parent().animate({left: 0}) :
+            pykc.$slides.parent().animate({left: '+='+eloffset})
+        pykc.slideNum --;
+        pykc.checkButtons('prev');
+    }
+
+    pykc.onNext = function(e){
+        e.preventDefault();
+        if (pykc.slideNum === pykc.$slides.length-1) return;
+        var $ele = pykc.$slides.eq(pykc.slideNum+1);
+        var eloffset = $ele.position().left;
+        pykc.$slides.parent().animate({left: -eloffset});
+        pykc.slideNum ++;
+        pykc.checkButtons('next');
+    }
+
+    pykc.checkButtons = function(id){
+        if ( pykc.slideNum === 0 || pykc.slideNum === pykc.$slides.length-1) {
+            $('#'+id).addClass('disabled');
+        }else{
+            $('.btn-control').removeClass('disabled');
+        }
+    }
+
     pykc.init = function(){
-      $('#evt-wrapper').cycle({ 
-        prev:   '#prev', 
-        next:   '#next', 
-        timeout: 0 
-      });
+      $('#prev').click(pykc.onPrev);
+      $('#next').click(pykc.onNext);
       this.mapInit();
       this.resizeMap()
-      //$(window).resize(function(){ pykc.resizeMap(); });
     }
 
     $(function(){ pykc.init(); });
