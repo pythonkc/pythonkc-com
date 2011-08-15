@@ -163,7 +163,7 @@ try:
             'BACKEND': 'redis_cache.RedisCache',
             'LOCATION': '{0}:{1}'.format(GONDOR_REDIS_HOST, GONDOR_REDIS_PORT),
             'OPTIONS': { # optional
-                'DB': 1,
+                'DB': 0,
                 'PASSWORD': GONDOR_REDIS_PASSWORD,
             }
         }
