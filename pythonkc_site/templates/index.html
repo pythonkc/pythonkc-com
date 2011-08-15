@@ -85,6 +85,11 @@
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(document.getElementById("map_canvas"), opts);
+      var venue = new google.maps.Marker({
+        position: latlng, 
+        map: this.map,
+        title:'{{ next_events.venue }}'
+      }); 
     }
 
     pykc.resizeMap = function(){
