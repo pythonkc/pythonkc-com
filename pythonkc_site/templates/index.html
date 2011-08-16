@@ -12,27 +12,29 @@
     <![endif]-->
   </head>
   <body>
-    <header role="banner">
-    </header>
+    <header role="banner"></header>
+    
     <section class="next-meeting">
-
-    <div class="wrap">
-      <article>
-      <header>
-      <time>
-      <h1>{{ next_event.time|date:"F j, Y" }}</h1>
-      <p>{{ next_event.time|date:"g:i a" }}</p>
-      </time>
-      </header>
+      <div class="wrap">
+        <article>
+          <div class="details">
+          <header>
+            <time>
+              <h1>{{ next_event.time|date:"F j"|upper }}</h1>
+              <p>{{ next_event.time|date:"gA" }}</p>
+            </time>
+          </header>
       <h2>{{ next_event.name|safe }}</h2>
-      <p>{{ next_event.description|safe }}</p>
-      <p class="rsvp"><a href="{{ next_event.event_url }}">RSVP</a></p>
-      <div id="map_canvas" style="width:100%; height:100%"></div>
+      {% if next_event.venue_id %}<address>{{ next_event.venue_name }} // {{ next_event.venue_address1 }}{% if next_event.venue_address2 %}, {{ next_event.venue_address2 }}{% endif %} // {{ next_event.venue_city }}, {{ next_event.venue_state }} {{ next_event.venue_zip }}</address>{% else %}Venue TBD{% endif %}
+      {% if next_event.description %}<p class="description">{{ next_event.description|safe }}</p>{% endif %}
+      <p class="rsvp">RSVP at <a href="{{ next_event.event_url }}"><img src="{{ STATIC_URL }}meetup-logo.gif" alt="PythonKC Meetup RSVP for {{ next_event.name|safe }}"></a></p>
+      </div>
+        <div id="map_canvas" style="width:100%; height:100%"></div>
       </article>
     </div>
-    </section>
+  </section>
 
-    <section id="past-meetups">
+  <section id="past-meetups">
     <div class="wrap">
       <h1>Past Events</h1> 
       <div class="slider-controls" id="slider-controls">
@@ -40,34 +42,61 @@
         <a href="#" class="btn-next btn-control" id="next"><span class="next-arrow"></span></a>
       </div>
       <div id="evt-wrapper">
-      {% for event in past_events %}
-      <article class="past-event">
-      <header>
-      <h1><time datetime>{{ event.time|date:"F j, Y" }}</time></h1>
-      </header>
-
+        {% for event in past_events %}
+        <article class="past-event">
+        <header>
+          <h1><time datetime>{{ event.time|date:"F j, Y" }}</time></h1>
+        </header>
+      
       <h2>{{ event.name|safe }}</h2>
       <p>{{ event.description|safe }}</p>
       <div class="attendees">
           <h3>Attendees ({{event.attendees|length}})</h3>
-        {% for attendee in event.attendees %}
+          {% for attendee in event.attendees %}
           {% if attendee.photo.thumb_url %}
           <div title="{{ attendee.name }}" style="background-image: url( {{ attendee.photo.thumb_url }} );" class="attendee"></div>
           {% endif %}
         {% endfor %}
       </div>
-
-      <figure class="flickr-photo">
-      <a href="{{flickr_url}}"><img src="" height="" width="" /></a>
-      </figure>
-      </article>
-      {% endfor %}
-      </div>
+    </article>
+    {% endfor %}
     </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>
+  <footer>
+    <a class="top">Back to the top</a>
       <div class="wrap">
+        <section>
+          <article>
+            <h1>POWERED BY</h1>
+            <ul>
+              <li><a href="http://www.python.org/">Python</a></li>
+              <li><a href="http://djangoproject.com/">Django</a></li>
+              <li><a href="https://gondor.io/">Gondor</a></li>
+            </ul>
+          </article>
+          <article>
+            <h1>FOLLOW US</h1>
+            <ul class="follow">
+              <li><a href="https://convore.com/pythonkc/">Convore</a></li>
+              <li><a href="http://groups.google.com/group/pythonkc/">Google Group</a></li>
+              <li><a href="http://www.linkedin.com/groups/PythonKC/">LinkedIN</a></li>
+              <li><a href="http://www.meetup.com/pythonkc/">Meetup</a></li>
+              <li><a href="http://twitter.com/pythonkc/">Twitter</a></li>
+            </ul>
+          </article>
+      </section>
+      {% comment %}
+      <section>
+      <div id="contact-form">
+      </div>
+      </section>
+      {% endcomment %}
+      <section>
+        <div class="copyright">
+        </div>
+      </section>
       </div>
     </footer>
   </div>
@@ -132,6 +161,10 @@
     }
 
     pykc.init = function(){
+      $('.top').click(function(e){
+        e.preventDefault();
+        $('html, body').animate({scrollTop: 0}, 300);
+      });
       $('#prev').click(pykc.onPrev);
       $('#next').click(pykc.onNext);
       this.mapInit();

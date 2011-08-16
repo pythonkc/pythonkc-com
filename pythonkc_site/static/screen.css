@@ -1,3 +1,42 @@
+/* ---------- RESET ---------- */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+blockquote, q { quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after { content: ""; content: none; }
+
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+table { border-collapse: collapse; border-spacing: 0; }
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+textarea, input { border: 1px solid #ddd; background: #FFFFFF; font-weight: normal; color: #333; font-size: 13px; }
+ul, li { list-style: none; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
 html { height: 100%; background: #87cded; }
 body { 
     height: 100%;
@@ -11,17 +50,97 @@ body {
     background-image: -ms-radial-gradient(50% 28%, circle cover, rgba(255,255,255, .3) 0%,#87cded 18.0%);
     background-image: radial-gradient(50% 28%, circle cover, rgba(255,255,255, .3) 0%,#87cded 18.0%);
 }
-header, section, article { display: block; }
+
 header[role="banner"]{ height: 145px; background: url(logo.png) center center no-repeat; }
 .wrap{ width: 930px; position: relative; margin: 0 auto; padding: 0 15px;
     overflow: hidden;
 }
+
+
 .next-meeting { 
     background-color: white; 
     border-top: 3px solid #abdcf2; 
     border-bottom: 3px solid #abdcf2;
 }
-footer { background: #219cd7; }
+
+.next-meeting .details {
+    padding: 30px 0 40px 0;
+    width: 450px;
+}
+
+.next-meeting h1 {
+    font-size: 44px;
+    line-height: 30px;
+}
+
+.next-meeting h2 {
+    font-size: 24px;
+    padding-top: 15px;
+}
+
+.next-meeting time p {
+    font-size: 33px;  
+}
+
+.next-meeting p.rsvp {
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 15px;    
+}
+
+.next-meeting p.rsvp a {
+    position: absolute;
+    padding-left: 10px;
+}
+
+footer {
+    color: #FFFFFF;
+    background: #219cd7;
+    font-size: 13px;
+    padding: 40px 0;
+    position: relative;
+}
+
+footer h1 {
+    margin-bottom: 15px;
+}
+
+footer a.top {
+    position: absolute;
+    top: -30px;
+    right: 100px;
+    cursor: pointer;
+    background: url(arrow-top.png) no-repeat scroll 0 0 transparent;
+    text-indent: -9999px;
+    overflow: hidden;
+    height: 65px;
+    width: 65px;
+}
+
+footer section article {
+    float: left;
+    margin: 0 20px 0 0;
+    padding: 0;
+    width: 175px;
+}
+
+footer ul li {
+    line-height: 22px;
+}
+
+footer ul li a {
+    color: #FFFFFF;
+}
+
+footer ul.follow {
+    background: url(footer-follow.png) no-repeat scroll 0 0 transparent;
+    height: 165px;
+}
+
+footer ul.follow li {
+    padding: 0 0 14px 25px;
+}
+
 #map_canvas { 
     position: absolute; 
     right: 0;
