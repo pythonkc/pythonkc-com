@@ -9,9 +9,11 @@ pykc.mapInit = function(lat,lon) {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(document.getElementById("map_canvas"), opts);
+    var image = '/site_media/static/pykc-marker.png';
     var venue = new google.maps.Marker({
         position: latlng, 
-        map: this.map
+        map: this.map,
+        icon: image
     });
 }
 

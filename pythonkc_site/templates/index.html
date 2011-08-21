@@ -25,7 +25,7 @@
             </time>
           </header>
       <h2>{{ next_event.name|safe }}</h2>
-      {% if next_event.venue.id %}<address>{{ next_event.venue.name }}{% if next_event.venue.address1 %} // {{ next_event.venue.address1 }}{% if next_event.venue.address2 %}, {{ next_event.venue.address2 }}{% endif %}{% endif %} // {{ next_event.venue.city }}, {{ next_event.venue.state }} {{ next_event.venue.zip }}</address>{% else %}Venue TBD{% endif %}
+      {% if next_event.venue.id %}<address>{{ next_event.venue.name }}{% if next_event.venue.address_1 %} // {{ next_event.venue.address_1 }}{% if next_event.venue.address_2 %}, {{ next_event.venue.address_2 }}{% endif %}{% endif %} // {{ next_event.venue.city }}, {{ next_event.venue.state }} {{ next_event.venue.zip }}</address>{% else %}Venue TBD{% endif %}
       {% if next_event.description %}<p class="description">{{ next_event.description|safe }}</p>{% endif %}
       <p class="rsvp">RSVP at <a href="{{ next_event.event_url }}"><img src="{{ STATIC_URL }}meetup-logo.gif" alt="PythonKC Meetup RSVP for {{ next_event.name|safe }}"></a></p>
       </div>
