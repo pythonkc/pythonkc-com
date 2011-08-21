@@ -25,7 +25,7 @@
             </time>
           </header>
       <h2>{{ next_event.name|safe }}</h2>
-      {% if next_event.venue.id %}<address>{{ next_event.venue.name }} // {{ next_event.venue.address1 }}{% if next_event.venue.address2 %}, {{ next_event.venue.address2 }}{% endif %} // {{ next_event.venue.city }}, {{ next_event.venue.state }} {{ next_event.venue.zip }}</address>{% else %}Venue TBD{% endif %}
+      {% if next_event.venue.id %}<address>{{ next_event.venue.name }}{% if next_event.venue.address1 %} // {{ next_event.venue.address1 }}{% if next_event.venue.address2 %}, {{ next_event.venue.address2 }}{% endif %}{% endif %} // {{ next_event.venue.city }}, {{ next_event.venue.state }} {{ next_event.venue.zip }}</address>{% else %}Venue TBD{% endif %}
       {% if next_event.description %}<p class="description">{{ next_event.description|safe }}</p>{% endif %}
       <p class="rsvp">RSVP at <a href="{{ next_event.event_url }}"><img src="{{ STATIC_URL }}meetup-logo.gif" alt="PythonKC Meetup RSVP for {{ next_event.name|safe }}"></a></p>
       </div>
@@ -48,9 +48,12 @@
           <h1><time datetime>{{ event.time|date:"F j, Y" }}</time></h1>
         </header>
       
-      <h2>{{ event.name|safe }}</h2>
-      <p>{{ event.description|safe }}</p>
-      <div class="attendees">
+      <h2><a href="{{ event.event_url }}">{{ event.name|safe }}</a></h2>
+      {% if event.description %}
+      <p>{{ event.description|safe|truncatewords_html:25 }}</p>
+      {% endif %}
+      <a href="{{ event.event_url }}" class="read-more">Read more at the Meetup event page &rarr;</a>
+      <div class="attendees clearfix">
           <h3>Attendees ({{event.attendees|length}})</h3>
           {% for attendee in event.attendees %}
           {% if attendee.photo.thumb_url %}
@@ -63,7 +66,37 @@
     </div>
     </div>
   </section>
-
+  <section class="resources clearfix">
+    <div class="wrap">
+      <h1>Resources</h1>
+      <article>
+      <h1>Books</h1>
+      <ul class="resources">
+        <li><a href="http://www.diveintopython.org/"> Dive Into Python <span class="author">Mark Pilgrim</span></a></li>
+        <li><a href="http://learnpythonthehardway.org/">Learn Python The Hard Way <span class="author">Zed A. Shaw</span></a></li>
+        <li><a href="http://www.swaroopch.com/notes/Python">A Byte of Python <span class="author">Swaroop C H</span></a></li>
+        <li><a href="http://greenteapress.com/thinkpython/thinkpython.html">Think Python <span class="author">Allen B. Downey</span></a></li>
+      </ul>
+      </article>
+      <article>
+      <h1>Websites</h1>
+      <ul class="resources">
+        <li><a href="http://python.org/">Official Python Site</a></li>
+        <li><a href="http://docs.python.org">Python Docs</a></li>
+        <li><a href="http://codingbat.com/python">Coding exercises</a></li>
+        <li><a href="https://github.com/gregmalcolm/python_koans">Coding koans</a></li>
+        <li><a href="http://www.pythonchallenge.com/">The Python Challenge</a></li>
+      </ul>
+      </article>
+      <article>
+      <h1>Community</h1>
+      <ul class="resources">
+        <li><a href="http://www.python.org/community/">Python Community</a></li>
+        <li><a href="http://reddit.com/r/python/">Python on Reddit</a></li>
+      </ul>
+      </article>
+    </div>
+  </section>
   <footer>
     <a class="top">Back to the top</a>
       <div class="wrap">
@@ -102,76 +135,11 @@
   </div>
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ STATIC_URL }}pykc.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8">
-    var pykc = window.pykc = pykc || {};
-    pykc.map;
-
-    pykc.mapInit = function() {
-      var latlng = new google.maps.LatLng({{ next_event.venue.lat|default:past_events.0.venue.lat|default:-34.397 }}, {{ next_event.venue.lon|default:past_events.0.venue.lon|default:150.644 }});
-      var opts = {
-        zoom: 8,
-        center: latlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      this.map = new google.maps.Map(document.getElementById("map_canvas"), opts);
-      var venue = new google.maps.Marker({
-        position: latlng, 
-        map: this.map,
-        title:'{{ next_events.venue }}'
-      }); 
-    }
-
-    pykc.resizeMap = function(){
-      this.$mapHolder = this.$mapHolder || $("#map_canvas");
-      this.$mapHolder.width( this.$mapHolder.parent().width()/2);
-      google.maps.event.trigger(this.map, 'resize');
-    }
-
-    pykc.$slides = $('#evt-wrapper').children();
-    pykc.slideNum = 0;
-
-    pykc.onPrev = function(e){
-        var $ele = pykc.$slides.eq(pykc.slideNum-1);
-        var eloffset = $ele.position().left;
-        e.preventDefault();
-        if (pykc.slideNum === 0) return;
-        eloffset === 0 ?
-            pykc.$slides.parent().animate({left: 0}) :
-            pykc.$slides.parent().animate({left: '+='+eloffset})
-        pykc.slideNum --;
-        pykc.checkButtons('prev');
-    }
-
-    pykc.onNext = function(e){
-        e.preventDefault();
-        if (pykc.slideNum === pykc.$slides.length-1) return;
-        var $ele = pykc.$slides.eq(pykc.slideNum+1);
-        var eloffset = $ele.position().left;
-        pykc.$slides.parent().animate({left: -eloffset});
-        pykc.slideNum ++;
-        pykc.checkButtons('next');
-    }
-
-    pykc.checkButtons = function(id){
-        if ( pykc.slideNum === 0 || pykc.slideNum === pykc.$slides.length-1) {
-            $('#'+id).addClass('disabled');
-        }else{
-            $('.btn-control').removeClass('disabled');
-        }
-    }
-
-    pykc.init = function(){
-      $('.top').click(function(e){
-        e.preventDefault();
-        $('html, body').animate({scrollTop: 0}, 300);
-      });
-      $('#prev').click(pykc.onPrev);
-      $('#next').click(pykc.onNext);
-      this.mapInit();
-      this.resizeMap()
-    }
-
-    $(function(){ pykc.init(); });
+    $(function(){ 
+        pykc.init( {{ next_event.venue.lat|default:past_events.0.venue.lat|default:-34.397 }}, {{ next_event.venue.lon|default:past_events.0.venue.lon|default:150.644 }});
+        });
   </script>
 </body>
 </html>

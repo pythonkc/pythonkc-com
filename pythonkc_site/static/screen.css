@@ -34,8 +34,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
 textarea, input { border: 1px solid #ddd; background: #FFFFFF; font-weight: normal; color: #333; font-size: 13px; }
 ul, li { list-style: none; }
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
+a { text-decoration: none; color:#646565; text-decoration: underline;}
+a:hover { text-decoration: none; }
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
 
 html { height: 100%; background: #87cded; }
 body { 
@@ -56,11 +60,18 @@ header[role="banner"]{ height: 145px; background: url(logo.png) center center no
     overflow: hidden;
 }
 
-
+section h1{
+    color: #ffffff;
+    font:bold 36px/1.4 'Helvetica Neue', Arial, Helvetica;
+    text-transform: uppercase;
+}
+h3{
+    margin-bottom: 5px;
+}
 .next-meeting { 
     background-color: white; 
-    border-top: 3px solid #abdcf2; 
-    border-bottom: 3px solid #abdcf2;
+    border-top: 3px solid #a8dbf2; 
+    border-bottom: 3px solid #a8dbf2;
 }
 
 .next-meeting .details {
@@ -71,6 +82,7 @@ header[role="banner"]{ height: 145px; background: url(logo.png) center center no
 .next-meeting h1 {
     font-size: 44px;
     line-height: 30px;
+    color: #646565;
 }
 
 .next-meeting h2 {
@@ -92,6 +104,19 @@ header[role="banner"]{ height: 145px; background: url(logo.png) center center no
     position: absolute;
     padding-left: 10px;
 }
+#past-meetups{
+    padding-top: 50px;
+}
+.past-event h1{
+    font-size: 27px;
+    color: #646565;
+    margin: 15px 0;
+}
+.past-event h2{
+    font-size: 20px;
+    color: #646565;
+    margin-bottom: 5px;
+}
 
 footer {
     color: #FFFFFF;
@@ -99,10 +124,13 @@ footer {
     font-size: 13px;
     padding: 40px 0;
     position: relative;
+    border-top: 3px solid #a8dbf2;
 }
 
 footer h1 {
     margin-bottom: 15px;
+    font-size: 13px;
+
 }
 
 footer a.top {
@@ -162,8 +190,8 @@ article.past-event{
 }
 .slider-controls {
     position: absolute;
-    top: 10px;
-    left: 165px;
+    top: 15px;
+    left: 275px;
     z-index: 10;
 }
 .btn-control { display: inline-block; 
@@ -193,7 +221,8 @@ article.past-event{
     background-size: 50px 50px;
     background-position: top center;
     background-repeat: no-repeat;
-    display: inline-block;
+    float: left;
+    margin: 0 5px 5px 0;
     height: 50px;
     width: 50px;
     border: 3px solid white;
@@ -201,4 +230,37 @@ article.past-event{
     -webkit-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px;
+}
+
+.attendees{
+    margin-top: 30px;
+}
+.read-more{
+    display: inline-block;
+    margin: 10px 0;
+}
+section.resources{
+    padding: 30px 0;
+}
+.resources article {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 32%;
+    float:left;
+    vertical-align: top;
+}
+.resources article h1{
+    text-transform: none;
+    color: #646565;
+    font-size: 27px;
+}
+.resources li { margin: 5px 0;}
+.resources a { font-weight: bold;}
+.author{
+    display: block;
+    font-weight: normal;
+    font-size: 80%;
 }
