@@ -35,3 +35,7 @@ class PythonKCHome(TemplateView):
             'next_event': get_next_event(),
             'past_events': get_past_events()
         }
+
+
+class PythonKCComingSoon(TemplateView):
+    template_name = 'coming_soon.html'
