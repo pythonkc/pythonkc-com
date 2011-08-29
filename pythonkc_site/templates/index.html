@@ -120,12 +120,24 @@
             </ul>
           </article>
       </section>
-      {% comment %}
       <section>
       <div id="contact-form">
+        <form action="{% url home %}" method="post" 
+              enctype="application/x-www-form-urlencoded"
+              class="contact-form">
+          {% csrf_token %}
+          {{ form.first_name }}
+          {{ form.last_name }}
+          {{ form.email }}
+          {{ form.first_name.errors }}
+          {{ form.last_name.errors }}
+          {{ form.email.errors }}
+          {{ form.message }}
+          {{ form.message.errors }}
+          <input type="submit" value="SUBMIT" class="contact-submit" />
+        </form>
       </div>
       </section>
-      {% endcomment %}
       <section>
         <div class="copyright">
         </div>

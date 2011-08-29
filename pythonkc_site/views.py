@@ -4,6 +4,7 @@
 from django.conf import settings
 from django.views.generic.base import TemplateView
 from pythonkc_meetups import PythonKCMeetups
+from pythonkc_site.forms import ContactForm
 
 
 try:
@@ -33,7 +34,8 @@ class PythonKCHome(TemplateView):
 
         return {
             'next_event': get_next_event(),
-            'past_events': get_past_events()
+            'past_events': get_past_events(),
+            'form': ContactForm()
         }
 
 
