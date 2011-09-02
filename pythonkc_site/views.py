@@ -2,6 +2,9 @@
 
 
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
+from django.core.urlresolvers import reverse
+from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from pythonkc_meetups import PythonKCMeetups
 from pythonkc_site.forms import ContactForm
@@ -17,8 +20,17 @@ meetups = PythonKCMeetups(api_key, http_timeout=6)
 num_past_events = getattr(settings, 'MEETUP_SHOW_PAST_EVENTS', 3)
 
 
-class PythonKCHome(TemplateView):
+class PythonKCHome(FormView):
     template_name = 'index.html'
+    form_class = ContactForm
+
+    def get_success_url(self):
+        return reverse('home')
+
+    def form_valid(self, form):
+        # TODO send email
+        # TODO create success msg with msg framework
+        return super(PythonKCHome, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         # NOTE Instead of individually caching next/past events, we're
@@ -35,7 +47,7 @@ class PythonKCHome(TemplateView):
         return {
             'next_event': get_next_event(),
             'past_events': get_past_events(),
-            'form': ContactForm()
+            'form': kwargs.get('form', None) or ContactForm()
         }
 
 
