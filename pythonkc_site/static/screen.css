@@ -270,6 +270,8 @@ section.resources{
 .contact-message { width: 521px; border-color: #87CDED; 
                    font: 13px 'Helvetica Neue',Arial,Helvetica,sans-serif normal; }
 .contact-submit { color: #1B82B3; }
+.contact-form .errorlist { color: #FF0000; display: inline; width: 155px; }
+.contact-form .errorlist li { display: inline; width: 155px; }
 
 .contact-form input::-webkit-input-placeholder { background-color: #1B82B3; color: #87CDED; }
 .contact-form textarea::-webkit-input-placeholder { background-color: #1B82B3; color: #87CDED; }
