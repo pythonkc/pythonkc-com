@@ -1,5 +1,5 @@
 Django==1.3
-gondor==1.0b1.post12
+gondor==1.0
 psycopg2==2.4.1
 South==0.7.3
 pythonkc-meetups==0.0.4
