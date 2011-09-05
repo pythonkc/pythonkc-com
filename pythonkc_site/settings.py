@@ -114,10 +114,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    'django.contrib.admin',
+    #'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    'django.contrib.admindocs',
+    #'django.contrib.admindocs',
     'south',
+    'pythonkc_site.contact',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -143,6 +144,11 @@ LOGGING = {
     }
 }
 
+
+CONTACT_EMAIL_FROM = 'noreply@pythonkc.com'
+# The following should become pythonkc@gmail.com, and eventually
+# contact@pythonkc.com
+CONTACT_EMAIL_TO = ['estebistec@gmail.com']
 
 try:
     from local_settings import *
