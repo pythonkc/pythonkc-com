@@ -45,26 +45,30 @@
       <div id="evt-wrapper">
         {% for event in past_events %}
         <article class="past-event">
-        <header>
-          <h1><time datetime>{{ event.time|date:"F j, Y" }}</time></h1>
-        </header>
-      
-      <h2><a href="{{ event.event_url }}">{{ event.name|safe }}</a></h2>
-      {% if event.description %}
-      <p>{{ event.description|safe|truncatewords_html:25 }}</p>
-      {% endif %}
-      <a href="{{ event.event_url }}" class="read-more">Read more at the Meetup event page &rarr;</a>
-      <div class="attendees clearfix">
-          <h3>Attendees ({{event.attendees|length}})</h3>
-          {% for attendee in event.attendees %}
-          {% if attendee.photo.thumb_url %}
-          <div title="{{ attendee.name }}" style="background-image: url( {{ attendee.photo.thumb_url }} );" class="attendee"></div>
+          <div class="details">
+            <header>
+              <h1><time datetime>{{ event.time|date:"F j, Y" }}</time></h1>
+            </header>
+            <h2><a href="{{ event.event_url }}">{{ event.name|safe }}</a></h2>
+            {% if event.description %}
+              <p>{{ event.description|safe|truncatewords_html:25 }}</p>
+            {% endif %}
+            <a href="{{ event.event_url }}" class="read-more">Read more at the Meetup event page &rarr;</a>
+            <div class="attendees clearfix">
+              <h3>Attendees ({{event.attendees|length}})</h3>
+              {% for attendee in event.attendees %}
+                {% if attendee.photo.thumb_url %}
+                  <div title="{{ attendee.name }}" style="background-image: url( {{ attendee.photo.thumb_url }} );" class="attendee"></div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          {% if event.photos.0.url %}
+            <img class="event-photo"  src="{{ event.photos.0.url }}" />
           {% endif %}
+        </article>
         {% endfor %}
       </div>
-    </article>
-    {% endfor %}
-    </div>
     </div>
   </section>
   <section class="resources clearfix">

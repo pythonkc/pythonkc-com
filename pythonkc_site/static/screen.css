@@ -117,6 +117,18 @@ h3{
     color: #646565;
     margin-bottom: 5px;
 }
+.past-event .details {
+    width: 400px;
+    float: left;
+}
+.past-event .event-photo {
+    float: left;
+    width: 500px;
+    height: 375px;
+    margin: 10px;
+    border: 6px solid white;
+}
+*/
 
 footer {
     color: #FFFFFF;
@@ -187,6 +199,7 @@ article.past-event{
     display: inline-block;
     width: 945px;
     vertical-align: top;
+    margin: 0 auto;
 }
 .slider-controls {
     position: absolute;
