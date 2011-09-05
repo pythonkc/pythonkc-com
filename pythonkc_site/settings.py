@@ -176,9 +176,7 @@ except NameError:  # If we're not in the Gondor runtime, use memory.
     }
 
 
-from meetup_api_key import MEETUP_API_KEY
-
 try:
-    from smtp_account import *
+    from private_settings import *
 except ImportError:
     pass
