@@ -127,15 +127,25 @@
               enctype="application/x-www-form-urlencoded"
               class="contact-form">
           {% csrf_token %}
-          {{ form.first_name }}
-          {{ form.last_name }}
-          {{ form.email }}
-          {{ form.first_name.errors }}
-          {{ form.last_name.errors }}
-          {{ form.email.errors }}
-          {{ form.message }}
-          {{ form.message.errors }}
-          <input type="submit" value="SUBMIT" class="contact-submit" />
+          <span class="name-container">
+            {{ form.first_name }}
+            {{ form.first_name.errors }}
+          </span>
+          <span class="name-container">
+            {{ form.last_name }}
+            {{ form.last_name.errors }}
+          </span>
+          <span class="email-container">
+            {{ form.email }}
+            {{ form.email.errors }}
+          </span>
+          <span class="message-container">
+            {{ form.message }}
+            {{ form.message.errors }}
+          </span>
+          <div>
+              <input type="submit" value="SUBMIT" class="contact-submit" />
+          </div>
         </form>
       </div>
       </section>

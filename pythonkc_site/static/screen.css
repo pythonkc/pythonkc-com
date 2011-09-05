@@ -265,14 +265,55 @@ section.resources{
     font-size: 80%;
 }
 
-.contact-name { width: 155px; border-color: #87CDED; }
-.contact-email { width: 200px; border-color: #87CDED; }
-.contact-message { width: 521px; border-color: #87CDED; 
-                   font: 13px 'Helvetica Neue',Arial,Helvetica,sans-serif normal; }
-.contact-submit { color: #1B82B3; }
-.contact-form .errorlist { color: #FF0000; display: inline; width: 155px; }
-.contact-form .errorlist li { display: inline; width: 155px; }
+/* The containers are meant to create columns that field errors can fill
+   vertically while the column-width is maintained. */
+.contact-name {
+    width: 157px;
+    border-color: #87CDED;
+}
+.name-container {
+    width: 157px;
+    float: left;
+    padding-right: 3px;
+    margin-right: 1px;
+}
+.contact-email {
+    width: 200px;
+    border-color: #87CDED;
+}
+.email-container {
+    width: 200px;
+    float: left;
+}
+.contact-message {
+    width: 522px; 
+    border-color: #87CDED; 
+    font: 13px 'Helvetica Neue',Arial,Helvetica,sans-serif normal;
+}
+.message-container {
+    width: 522px; 
+    float: left;
+    padding-right: 3px;
+}
+.contact-submit {
+    color: #1B82B3;
+}
+.contact-form .errorlist {
+    color: #FFAFAF; 
+    display: inline; 
+    margin-bottom: 6px;
+}
 
-.contact-form input::-webkit-input-placeholder { background-color: #1B82B3; color: #87CDED; }
-.contact-form textarea::-webkit-input-placeholder { background-color: #1B82B3; color: #87CDED; }
-.contact-form *:-moz-placeholder { background-color: #1B82B3; color: #87CDED; }
+.contact-form *:-moz-placeholder { 
+    background-color: #1B82B3;
+    color: #87CDED;
+}
+/* Combining these as *::-webkit-input-placeholder didn't seem to work...*/
+.contact-form input::-webkit-input-placeholder {
+    background-color: #1B82B3;
+    color: #87CDED;
+}
+.contact-form textarea::-webkit-input-placeholder { 
+    background-color: #1B82B3;
+    color: #87CDED;
+}
