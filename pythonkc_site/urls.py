@@ -15,7 +15,7 @@ from pythonkc_site.views import PythonKCHome
 urlpatterns = patterns('',
 
     url(r'^/?$', cache_page(60*60*24)(PythonKCComingSoon.as_view())),
-    url(r'^demo/?$', cache_page(60 * 5)(PythonKCHome.as_view()), name='home'),
+    url(r'^demo/?$', PythonKCHome.as_view(), name='home'),
 
     # Examples:
     # url(r'^$', 'pythonkc_site.views.home', name='home'),
