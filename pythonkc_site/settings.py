@@ -4,11 +4,10 @@ import os
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+DEBUG = TEMPLATE_DEBUG = False
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Steven Cummings', 'estebistec@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -86,9 +85,6 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'pwmml&2hgn!-be$0fsvv92!q1-6q0=zmv4wr@&d!5h_)shtr^7'
-
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -161,7 +157,7 @@ try:
         'default': {
             'BACKEND': 'redis_cache.RedisCache',
             'LOCATION': '{0}:{1}'.format(GONDOR_REDIS_HOST, GONDOR_REDIS_PORT),
-            'OPTIONS': { # optional
+            'OPTIONS': {
                 'DB': 0,
                 'PASSWORD': GONDOR_REDIS_PASSWORD,
             }
@@ -176,3 +172,8 @@ except NameError:  # If we're not in the Gondor runtime, use memory.
 
 
 from meetup_api_key import MEETUP_API_KEY
+
+try:
+    from smtp_account import *
+except ImportError:
+    pass
