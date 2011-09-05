@@ -2,3 +2,5 @@
 *.pyc
 pythonkc_site/pythonkc.sqlite
 pythonkc_site/meetup_api_key.py
+pythonkc_site/local_settings.py
+pythonkc_site/smtp_account.py
