@@ -146,9 +146,8 @@ LOGGING = {
 
 
 CONTACT_EMAIL_FROM = 'noreply@pythonkc.com'
-# The following should become pythonkc@gmail.com, and eventually
-# contact@pythonkc.com
-CONTACT_EMAIL_TO = ['estebistec@gmail.com']
+# The following should become contact@pythonkc.com
+CONTACT_EMAIL_TO = ['pythonkc@gmail.com']
 
 try:
     from local_settings import *
