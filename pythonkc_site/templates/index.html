@@ -14,7 +14,15 @@
   </head>
   <body>
     <header role="banner"></header>
-    
+
+    {% if request.GET.contact_sent == 'yes' %}
+        <span class="contact-sent">
+            Thanks for dropping us a note! We look forward to getting in touch 
+            with you. In the meantime, consider joining our little group or
+            RSVP'ing for our next event to see what we're all about!
+        </span>
+    {% endif %}
+
     <section class="next-meeting">
       <div class="wrap">
         <article>

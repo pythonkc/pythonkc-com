@@ -329,3 +329,13 @@ section.resources{
     background-color: #1B82B3;
     color: #87CDED;
 }
+
+.contact-sent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-color: #EEE;
+    text-align: center;
+}
