@@ -156,7 +156,6 @@ LOGGING = {
 
 
 CONTACT_EMAIL_FROM = 'noreply@pythonkc.com'
-# The following should become contact@pythonkc.com
 CONTACT_EMAIL_TO = ['pythonkc@gmail.com']
 
 try:
