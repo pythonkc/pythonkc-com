@@ -90,6 +90,10 @@ h3{
     padding-top: 15px;
 }
 
+.next-meeting p {
+    margin-bottom: 10px;
+}
+
 .next-meeting time p {
     font-size: 33px;  
 }
