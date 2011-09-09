@@ -3,7 +3,6 @@
 
 from django.core.urlresolvers import reverse
 from django.views.generic import FormView
-from django.views.generic.base import TemplateView
 from pythonkc_site.contact.email import send_contact_form_email
 from pythonkc_site.contact.forms import ContactForm
 from pythonkc_site.meetups import events
@@ -26,7 +25,3 @@ class PythonKCHome(FormView):
             'past_events': events.get_past_events(),
             'form': kwargs.get('form', None) or ContactForm()
         }
-
-
-class PythonKCComingSoon(TemplateView):
-    template_name = 'coming_soon.html'
