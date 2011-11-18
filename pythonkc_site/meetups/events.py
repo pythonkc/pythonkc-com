@@ -27,14 +27,38 @@ num_past_events = getattr(settings, 'MEETUP_SHOW_PAST_EVENTS', 3)
 
 
 def memoize_in_cache(cache_key, cache_timeout_seconds=None):
-    """Cache the result of a no-args function."""
+    """
+    Caches the result of a no-args function. Further, a backup cache is
+    maintained, updated as often as the primary but waits much longer to expire
+    than the primary cache.
+
+    NOTE This should all go away once gondor gets schedule celery tasks that
+    can be used to periodically populate the meetup.com event cache (thereby
+    allowing visitor requests to avoid the hit).
+    """
+
+    backup_cache_key = cache_key + '_backup'
+    backup_cache_timeout_seconds = (cache_timeout_seconds * 100 
+                                    if cache_timeout_seconds else 
+                                    60 * 60 * 24)
+
     def decorator(func):
         @wraps(func)
         def decorated():
             value = cache.get(cache_key)
             if not value:
-                value = func()
-                cache.set(cache_key, value, cache_timeout_seconds)
+                try:
+                    value = func()
+                    cache.set(cache_key, value, cache_timeout_seconds)
+                    cache.set(backup_cache_key, value, 
+                              backup_cache_timeout_seconds)
+                except:
+                    value = cache.get(backup_cache_key)
+                    if value:
+                        logging.exception('Had to load backup value due to '
+                                          'exception')
+                    else:
+                        raise
             return value
         return decorated
     return decorator
