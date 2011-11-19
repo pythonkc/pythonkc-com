@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="PythonKC groups website. For all things Python in Kansas City." />
+    <meta name="keywords" content="python, kansas city" />
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta name="google-site-verification" content="nEMztdRw82tradHMd_FOb46_9pIdUvVf2hfKdTFmOmo" />
+    <title>PythonKC || For all things Python in Kansas City.</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}mobile.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      <header role="banner"></header>
+    <section class="next-meeting">
+      <div class="wrap">
+        <article>
+          <div class="details">
+          <header>
+            <time>
+              <h1>{{ next_event.time|date:"F j"|upper }}</h1>
+              <p>{{ next_event.time|date:"gA" }}</p>
+            </time>
+          </header>
+      <h2>{{ next_event.name|safe }}</h2>
+      {% if next_event.venue.id %}<address>{{ next_event.venue.name }}{% if next_event.venue.address_1 %} // {{ next_event.venue.address_1 }}{% if next_event.venue.address_2 %}, {{ next_event.venue.address_2 }}{% endif %}{% endif %} // {{ next_event.venue.city }}, {{ next_event.venue.state }} {{ next_event.venue.zip }}</address>{% else %}Venue TBD{% endif %}
+      {% if next_event.description %}<p class="description">{{ next_event.description|safe }}</p>{% endif %}
+      <p class="rsvp">RSVP at <a href="{{ next_event.event_url }}"><img src="{{ STATIC_URL }}meetup-logo.gif" alt="PythonKC Meetup RSVP for {{ next_event.name|safe }}"></a></p>
+      </div>
+        <div id="map_canvas" style="width:100%; height:100%"></div>
+      </article>
+    </div>
+    <a href="{% url past-meetups %}">Previous meetups</a>
+  </section>
+  <footer>
+      <section>
+          <a href="mailto:{{ contact_email }}">Contact us!</a>
+      </section>
+      <section>
+        <div class="copyright">
+        </div>
+      </section>
+    </footer>
+  </div>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ STATIC_URL }}pykc.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(function(){ 
+        pykc.init( {{ next_event.venue.lat|default:-34.397 }}, {{ next_event.venue.lon|default:150.644 }});
+        });
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25628613-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="PythonKC groups website. For all things Python in Kansas City." />
+    <meta name="keywords" content="python, kansas city" />
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta name="google-site-verification" content="nEMztdRw82tradHMd_FOb46_9pIdUvVf2hfKdTFmOmo" />
+    <title>PythonKC || For all things Python in Kansas City.</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}mobile.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      <header role="banner"></header>
+  <section id="past-meetups">
+    <h1>Past Events</h1>
+    <ol>
+    <li>
+        <a id="back-home" href="{% url home %}">Go back</a>
+    </li>
+    {% for event in past_events %}
+    <li>
+      <a href="{{ event.event_url }}">
+        <time datetime>{{ event.time|date:"F j, Y" }}</time>
+        {{ event.name }}
+      </a>
+    </li>
+    {% endfor %}
+    </ol>
+  </section>
+  </div>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25628613-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</body>
+</html>
