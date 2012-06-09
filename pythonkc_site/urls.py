@@ -4,6 +4,7 @@
 from django.conf.urls.defaults import include
 from django.conf.urls.defaults import patterns
 from django.conf.urls.defaults import url
+from django.views.decorators.cache import cache_page
 from pythonkc_site.views import PythonKCHome
 
 # Uncomment the next two lines to enable the admin:
@@ -11,7 +12,7 @@ from pythonkc_site.views import PythonKCHome
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^/?$', PythonKCHome.as_view(), name='home'),
+    url(r'^/?$', cache_page(60 * 5)(PythonKCHome.as_view()), name='home'),
 
     # Examples:
     # url(r'^$', 'pythonkc_site.views.home', name='home'),
