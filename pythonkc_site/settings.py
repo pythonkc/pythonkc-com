@@ -158,6 +158,13 @@ LOGGING = {
 CONTACT_EMAIL_FROM = 'noreply@pythonkc.com'
 CONTACT_EMAIL_TO = ['pythonkc@gmail.com']
 
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
+MEETUP_API_KEY = os.environ["MEETUP_API_KEY"]
+
 try:
     from local_settings import *
 except ImportError:
@@ -183,9 +190,3 @@ except NameError:  # If we're not in the Gondor runtime, use memory.
             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         }
     }
-
-
-try:
-    from private_settings import *
-except ImportError:
-    pass
