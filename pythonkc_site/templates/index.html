@@ -53,7 +53,7 @@
       </div>
       <div id="evt-wrapper">
         {% for event in past_events %}
-        <article class="past-event">
+        <article class="past-event{% if not event.photos.0.url %} no-photo{% endif %}">
           <div class="details">
             <header>
               <h1><time datetime>{{ event.time|date:"F j, Y" }}</time></h1>
