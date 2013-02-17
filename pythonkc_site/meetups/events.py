@@ -38,8 +38,8 @@ def memoize_in_cache(cache_key, cache_timeout_seconds=None):
     """
 
     backup_cache_key = cache_key + '_backup'
-    backup_cache_timeout_seconds = (cache_timeout_seconds * 100 
-                                    if cache_timeout_seconds else 
+    backup_cache_timeout_seconds = (cache_timeout_seconds * 10000
+                                    if cache_timeout_seconds else
                                     60 * 60 * 24)
 
     def decorator(func):
@@ -50,7 +50,7 @@ def memoize_in_cache(cache_key, cache_timeout_seconds=None):
                 try:
                     value = func()
                     cache.set(cache_key, value, cache_timeout_seconds)
-                    cache.set(backup_cache_key, value, 
+                    cache.set(backup_cache_key, value,
                               backup_cache_timeout_seconds)
                 except:
                     value = cache.get(backup_cache_key)
