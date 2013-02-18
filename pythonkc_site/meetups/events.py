@@ -22,8 +22,8 @@ except AttributeError:
     raise ImproperlyConfigured('MEETUP_API_KEY is required in settings')
 
 
-meetups = PythonKCMeetups(api_key, http_timeout=6)
 num_past_events = getattr(settings, 'MEETUP_SHOW_PAST_EVENTS', 3)
+meetups = PythonKCMeetups(api_key, num_past_events=num_past_events, http_timeout=6)
 
 
 def memoize_in_cache(cache_key, cache_timeout_seconds=None):
