@@ -324,17 +324,14 @@ section.resources{
 }
 
 .contact-form *:-moz-placeholder { 
-    background-color: #1B82B3;
-    color: #87CDED;
+    color: #219cd7;
 }
 /* Combining these as *::-webkit-input-placeholder didn't seem to work...*/
 .contact-form input::-webkit-input-placeholder {
-    background-color: #1B82B3;
-    color: #87CDED;
+    color: #219cd7;
 }
 .contact-form textarea::-webkit-input-placeholder { 
-    background-color: #1B82B3;
-    color: #87CDED;
+    color: #219cd7;
 }
 
 .contact-sent {
