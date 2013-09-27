@@ -165,7 +165,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-MEETUP_API_KEY = os.environ["MEETUP_API_KEY"]
+MEETUP_API_KEY = os.environ.get("MEETUP_API_KEY")
 
 try:
     from local_settings import *
