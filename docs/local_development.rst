@@ -10,8 +10,6 @@ Running PythonKC.com Locally
 
 #. ``pip install -r requirements/project.txt``
 
-#. ``python manage.py syncdb``
-
 #. Create ``local_settings.py``, with::
 
     DEBUG = TEMPLATE_DEBUG = True
@@ -20,23 +18,21 @@ Running PythonKC.com Locally
     # Otherwise, you probably want emails you test with to come to you:
     CONTACT_EMAIL_TO = ['me@gmail.com']
 
-#. Create ``private_settings.py`` with:
+#. Create a `.env` file with:
 
-    #. Meetup.com API key::
+   #!/bin/sh
+   export MEETUP_API_KEY="<your meetup.com API key>"
 
-        MEETUP_API_KEY = "<your API key for meetup.com>"
+   # if you're not using console.EmailBackend:
+   export EMAIL_HOST_USER="<your email user>"
+   export EMAIL_HOST_PASSWORD="<your email password>"
 
-    #. SMTP settings (if you kept the default email backend of SMTP above)::
+#. Source your .env file: ``source .env``.
 
-        # For example....
-        EMAIL_HOST = "smtp.gmail.com"
-        EMAIL_PORT = 587
-        EMAIL_USE_TLS = True
-        EMAIL_HOST_USER = "contact@pythonkc.com"
-        EMAIL_HOST_PASSWORD = "*******************"
+#. ``python manage.py syncdb``
 
 #. ``python manage.py runserver``
 
 #. Profit!!!
 
-Note that both ``local_settings.py`` and ``private_settings.py`` are in our ``.gitignore``, so you don't commit what you do there.
+Note that both ``local_settings.py`` and ``.env`` are in our ``.gitignore``, so you don't commit what you do there.
