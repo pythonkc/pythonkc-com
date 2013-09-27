@@ -14,3 +14,8 @@ Development Quickstart
   python manage.py runserver
 
 Profit! $$$
+
+More Detailed Instructions
+--------------------------
+
+See: docs/local_development
