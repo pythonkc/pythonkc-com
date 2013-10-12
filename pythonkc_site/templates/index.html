@@ -142,7 +142,7 @@
       </section>
       <section>
       <div id="contact-form">
-        <form action="{% url home %}" method="post" 
+        <form action="{% url 'home' %}" method="post" 
               enctype="application/x-www-form-urlencoded"
               class="contact-form">
           {% csrf_token %}
