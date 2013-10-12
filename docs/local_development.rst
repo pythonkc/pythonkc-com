@@ -18,14 +18,15 @@ Running PythonKC.com Locally
     # Otherwise, you probably want emails you test with to come to you:
     CONTACT_EMAIL_TO = ['me@gmail.com']
 
-#. Create a `.env` file with:
+#. Create a `.env` file with::
 
-   #!/bin/sh
-   export MEETUP_API_KEY="<your meetup.com API key>"
-
-   # if you're not using console.EmailBackend:
-   export EMAIL_HOST_USER="<your email user>"
-   export EMAIL_HOST_PASSWORD="<your email password>"
+    #!/bin/sh
+    export MEETUP_API_KEY="<your meetup.com API key>"
+    export DJANGO_SECRET_KEY="<your secret key>"
+    
+    # if you're not using console.EmailBackend:
+    export EMAIL_HOST_USER="<your email user>"
+    export EMAIL_HOST_PASSWORD="<your email password>"
 
 #. Source your .env file: ``source .env``.
 
