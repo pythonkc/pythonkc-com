@@ -1,4 +1,5 @@
 .gondor
+.vagrant
 *.pyc
 pythonkc_site/pythonkc.sqlite
 pythonkc_site/local_settings.py
