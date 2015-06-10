@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     pythonkcdotdev.vm.provider "virtualbox" do |vb|
       vb.name = "pythonkcdotdev"
-      vb.memory = 1024
+      vb.memory = 512
       vb.cpus = 2
       vb.customize ["modifyvm", :id, "--cpuexecutioncap", "80"]
     end
