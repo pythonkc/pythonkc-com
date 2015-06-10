@@ -15,20 +15,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     raise 'vagrant-vbguest is not installed. run: vagrant plugin install vagrant-vbguest'
   end
 
-  config.vm.define "pythonkcdotdev" do |pythonkcdotdev|
-    pythonkcdotdev.vm.box = "box-cutter/debian81"
-    pythonkcdotdev.vm.hostname = "pythonkc.dev"
-    pythonkcdotdev.vm.network "private_network", ip: "192.168.100.101"
-    pythonkcdotdev.vm.synced_folder "./",  "/vagrant/"
-    pythonkcdotdev.vm.synced_folder "./pythonkc_site", "/var/www/pythonkc_site"
+  config.vm.define "pykcdotdev" do |pykcdotdev|
+    pykcdotdev.vm.box = "box-cutter/debian81"
+    pykcdotdev.vm.hostname = "pythonkc.dev"
+    pykcdotdev.vm.network "private_network", ip: "192.168.100.101"
+    pykcdotdev.vm.synced_folder "./",  "/vagrant/"
+    pykcdotdev.vm.synced_folder "./pythonkc_site", "/var/www/pythonkc_site"
     # TODO: Create a synced folder location for Ansible playbooks
 
-    pythonkcdotdev.vm.provider "virtualbox" do |vb|
-      vb.name = "pythonkcdotdev"
+    pykcdotdev.vm.provider "virtualbox" do |vb|
+      vb.name = "pykcdotdev"
       vb.memory = 512
       vb.cpus = 2
       vb.customize ["modifyvm", :id, "--cpuexecutioncap", "80"]
     end
-    pythonkcdotdev.vm.provision :shell, :path => "provision.sh"
+    pykcdotdev.vm.provision :shell, :path => "provision.sh"
   end
 end
