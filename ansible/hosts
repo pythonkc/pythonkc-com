@@ -1,0 +1,6 @@
+[vagrant]
+localhost ansible_connection=local
+
+# TODO
+#[production]
+#pythonkc.com  

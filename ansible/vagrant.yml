@@ -1,0 +1,14 @@
+---
+- hosts: vagrant
+  sudo: yes
+
+  # you can have tasks right here
+  tasks:
+    - name: Say hello
+      shell: echo `date` > /home/vagrant/hello.txt
+
+  # and you can have 'roles'
+  roles:
+    - role: base
+      tags: base_role
+  
