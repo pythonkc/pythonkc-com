@@ -6,7 +6,7 @@ Files for the PythonKC.com website.
 
 ```
 vagrant plugin install vagrant-hostmanager
-vagrant plugin install vagrant-vbguest
+vagrant plugin install vagrant-hostsupdater
 vagrant up
 ```
 

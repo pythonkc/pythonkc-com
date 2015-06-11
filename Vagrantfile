@@ -10,13 +10,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     raise 'vagrant-hostmanager is not installed. run: vagrant plugin install vagrant-hostmanager'
   end
 
-  # vagrant-vbguest plugin is required
-  unless Vagrant.has_plugin?("vagrant-vbguest")
-    raise 'vagrant-vbguest is not installed. run: vagrant plugin install vagrant-vbguest'
+  # vagrant-hostsupdater plugin is required
+  unless Vagrant.has_plugin?("vagrant-hostsupdater")
+    raise 'vagrant-hostsupdater is not installed. run: vagrant plugin install vagrant-hostsupdater'
   end
 
   config.vm.define "pykcdotdev" do |pykcdotdev|
-    pykcdotdev.vm.box = "box-cutter/debian81"
+    pykcdotdev.vm.box = "debian/jessie64"
     pykcdotdev.vm.hostname = "pythonkc.dev"
     pykcdotdev.vm.network "private_network", ip: "192.168.100.101"
     pykcdotdev.vm.synced_folder "./",  "/vagrant/"
