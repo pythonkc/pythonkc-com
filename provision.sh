@@ -4,9 +4,8 @@
 export DEBIAN_FRONTEND=noninteractive
 
 aptitude update
+aptitude purge -y chef chef-zero puppet puppet-common
 aptitude dist-upgrade -y
-aptitude install build-essential -y
-aptitude install linux-headers-amd64 -y
 ln -sf /vagrant /home/vagrant/
 mkdir -p /var/www
 ln -sf /vagrant/pythonkc_site /var/www/pythonkc_site
