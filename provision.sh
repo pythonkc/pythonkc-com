@@ -8,6 +8,8 @@ aptitude dist-upgrade -y
 aptitude install build-essential -y
 aptitude install linux-headers-amd64 -y
 ln -sf /vagrant /home/vagrant/
+mkdir -p /var/www
+ln -sf /vagrant/pythonkc_site /var/www/pythonkc_site
 
 if [[ -z "$(which ansible)" ]]; then
     echo "Installing Ansible..."
