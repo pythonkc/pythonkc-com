@@ -1,5 +1,7 @@
 # PYTHONKC.COM WEBSITE
 
+[![Join the chat at https://gitter.im/pythonkc/pythonkc.com](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pythonkc/pythonkc.com?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Files for the PythonKC.com website.
 
 ## Development Quickstart Option 1 (vagrant)
