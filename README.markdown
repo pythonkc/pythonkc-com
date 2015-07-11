@@ -23,10 +23,10 @@ cd ~/vagrant/ansible
 ansible-playbook vagrant.yml
 ```
 
-## Development Quickstart Option 2 (virtualenv)
+## Development Quickstart get up and running 'as is' Option 2 (virtualenv)
 
 ```
-mkvirtualenv pythonkc
+mkvirtualenv --no-site-packages --distribute pythonkc
 git clone git@github.com:pythonkc/pythonkc.com.git
 cd pythonkc.com/pythonkc_site
 pip install -r requirements/project.txt
@@ -34,6 +34,16 @@ python manage.py runserver
 ```
 
 Profit! $$$
+
+## For upgrading to Python3 Development Option 3 (virtualenv)
+
+```
+mkvirtualenv pythonkc -p `which python3`
+git clone git@github.com:pythonkc/pythonkc.com.git
+cd pythonkc.com/pythonkc_site
+pip install -r requirements/project.txt
+python manage.py runserver
+```
 
 ## More Detailed Instructions
 
