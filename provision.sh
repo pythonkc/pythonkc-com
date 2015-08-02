@@ -11,9 +11,10 @@ mkdir -p /var/www
 ln -sf /vagrant/pythonkc_site /var/www/pythonkc_site
 
 if [[ -z "$(which ansible)" ]]; then
-    echo "Installing Ansible..."
-    aptitude install -y python3 python3-dev python3-pip ansible
+    echo "Installing pip and Ansible..."
+    aptitude install -y python-dev python-pip
+    pip2 install ansible
 fi
 
 cd /home/vagrant/vagrant/ansible
-ansible-playbook vagrant.yml
+sudo -H -u vagrant ansible-playbook vagrant.yml

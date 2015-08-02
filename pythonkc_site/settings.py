@@ -1,6 +1,11 @@
 # Django settings for pythonkc_site project.
 import os
 
+from os.path import abspath, dirname, join
+
+import dotenv
+dotenv.read_dotenv(abspath(join(dirname(__file__), '.env')))
+
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 

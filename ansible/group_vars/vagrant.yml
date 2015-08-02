@@ -1,2 +1,4 @@
 ---
 user: vagrant
+pythonpath: /home/vagrant/vagrant
+project_root: /home/vagrant/vagrant/pythonkc_site
