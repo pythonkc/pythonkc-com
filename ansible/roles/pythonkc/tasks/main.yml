@@ -1,0 +1,9 @@
+---
+- {include: python2.yml, tags: python, when: python_version == 2}
+- {include: python3.yml, tags: python, when: python_version == 3}
+- include: tools.yml tags=tools
+- include: django.yml tags=django
+
+# TODO
+# vim + vim configuration for python?
+# postgres? (for now just using sqlite for development)

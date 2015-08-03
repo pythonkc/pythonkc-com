@@ -1,0 +1,2 @@
+gondor==1.0.5
+wsgiref==0.1.2

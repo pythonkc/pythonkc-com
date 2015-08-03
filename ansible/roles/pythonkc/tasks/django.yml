@@ -1,0 +1,47 @@
+---
+- name: Create virtualenvs directory
+  file: dest=~/virtualenvs state=directory owner={{ user }} group={{ user }}
+
+
+- name: Install requirements into Python 2.7 virtualenv
+  pip:
+    requirements: "{{ project_root }}/requirements/project.txt"
+    virtualenv: "{{ virtualenv }}"
+    virtualenv_command: /usr/bin/virtualenv -p python2.7
+  when: python_version == 2
+
+
+- name: Install requirements into Python 3 virtualenv
+  pip:
+    requirements: "{{ project_root }}/requirements/project.txt"
+    virtualenv: "{{ virtualenv }}"
+    virtualenv_command: python3 /usr/lib/python3/dist-packages/virtualenv.py -p python3
+  when: python_version == 3
+
+
+- name: Set some env vars when activating virtualenv
+  lineinfile:
+    dest: "{{ virtualenv }}/bin/activate"
+    regexp: "^export {{ item.name }}="
+    line: "export {{ item.name }}={{ item.value }}"
+    state: present
+    insertafter: EOF
+  with_items:
+    - {name: DJANGO_SETTINGS_MODULE, value: pythonkc_site.settings}
+    - {name: PYTHONPATH, value: "{{ pythonpath }}"}
+
+
+- name: Automatically activate the virtualenv in bashrc
+  lineinfile:
+    dest: ~/.bashrc
+    line: "source {{ virtualenv }}/bin/activate"
+    state: present
+    insertafter: EOF
+
+
+- name: Run migrations
+  django_manage:
+    command: migrate
+    app_path: "{{ project_root }}"
+    pythonpath: "{{ pythonpath }}"
+    virtualenv: "{{ virtualenv }}"
