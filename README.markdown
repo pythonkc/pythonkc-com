@@ -21,6 +21,7 @@ be ignored by git)
 Then you have to install some vagrant plugins and build your vagrant box:
 
 ```
+vagrant plugin install vagrant-vbguest
 vagrant plugin install vagrant-hostmanager
 vagrant plugin install vagrant-hostsupdater
 vagrant up
