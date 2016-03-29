@@ -12,7 +12,7 @@ then using Ansible to manage the environment from there. (Note: we're *not*
 using the [ansible provisioner][ansible].)
 
 First you need to install [Vagrant][vagrant] and [VirtualBox][virtualbox] and clone [our
-repository][] from github.
+repository][repo] from github.
 
 Now copy `pythonkc_site/.env.example` to `pythonkc_site/.env` and add
 your own [meetup api key][meetup] and a unique [django secret key][django] (`.env` will
@@ -80,6 +80,7 @@ See: docs/local_development
 [ansible]: http://docs.vagrantup.com/v2/provisioning/ansible.html
 [django]: http://www.miniwebtool.com/django-secret-key-generator/
 [meetup]: https://secure.meetup.com/meetup_api/key/
+[repo]: https://github.com/pythonkc/pythonkc-com
 [shell]: http://docs.vagrantup.com/v2/provisioning/shell.html
 [vagrant]: https://www.vagrantup.com/downloads.html
 [virtualbox]: https://www.virtualbox.org
