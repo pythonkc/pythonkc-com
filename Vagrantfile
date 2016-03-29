@@ -40,24 +40,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     raise 'vagrant-vbguest is not installed. run: vagrant plugin install vagrant-vbguest'
   end
 
-  config.vm.define "pykcdotdev" do |pykcdotdev|
-    pykcdotdev.vm.box = "debian/jessie64"
-    pykcdotdev.vm.hostname = "pythonkc.dev"
-    pykcdotdev.vm.network "private_network", type: "dhcp"
+  config.vm.define "pykcdevel" do |pykcdevel|
+    pykcdevel.vm.box = "debian/jessie64"
+    pykcdevel.vm.hostname = "pythonkc.devel"
+    pykcdevel.vm.network "private_network", type: "dhcp"
     if OS.unix?
-      pykcdotdev.vm.synced_folder "./", "/vagrant/", type: "nfs"
+      pykcdevel.vm.synced_folder "./", "/vagrant/", type: "nfs"
     elsif OS.windows?
-      pykcdotdev.vm.synced_folder "./", "/vagrant/", type: "smb"
+      pykcdevel.vm.synced_folder "./", "/vagrant/", type: "smb"
     else
       raise 'Unknown host operating system. Cannot continue.'
     end
 
-    pykcdotdev.vm.provider "virtualbox" do |vb|
-      vb.name = "pykcdotdev"
+    pykcdevel.vm.provider "virtualbox" do |vb|
+      vb.name = "pykcdevel"
       vb.memory = 512
       vb.cpus = 2
       vb.customize ["modifyvm", :id, "--cpuexecutioncap", "80"]
     end
-    pykcdotdev.vm.provision :shell, :path => "provision.sh"
+    pykcdevel.vm.provision :shell, :path => "provision.sh"
   end
 end
