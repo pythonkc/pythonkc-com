@@ -1,6 +1,7 @@
 .gondor
 .vagrant
 *.pyc
+ansible/vagrant.retry
 pythonkc_site/pythonkc.sqlite
 pythonkc_site/local_settings.py
 pythonkc_site/private_settings.py
