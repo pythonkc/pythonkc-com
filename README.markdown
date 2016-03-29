@@ -1,21 +1,21 @@
-# PYTHONKC.COM WEBSITE
+# `pythonkc.com` website
 
 [![Join the chat at https://gitter.im/pythonkc/pythonkc.com](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pythonkc/pythonkc.com?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Files for the PythonKC.com website.
+Files for the `pythonkc.com` website.
 
 ## Development Quickstart Option 1 (vagrant)
 
 We're going to use Vagrant and Virtualbox to run pythonkc.com inside a Debian
-VM. We're using the [shell provisioner][] to install Ansible inside our VM and
+VM. We're using the [shell provisioner][shell] to install Ansible inside our VM and
 then using Ansible to manage the environment from there. (Note: we're *not*
-using the [ansible provisioner][].)
+using the [ansible provisioner][ansible].)
 
-First you need to install [Vagrant][] and [VirtualBox][] and clone [our
+First you need to install [Vagrant][vagrant] and [VirtualBox][virtualbox] and clone [our
 repository][] from github.
 
 Now copy `pythonkc_site/.env.example` to `pythonkc_site/.env` and add
-your own [meetup api key][] and a unique [django secret key][] (`.env` will
+your own [meetup api key][meetup] and a unique [django secret key][django] (`.env` will
 be ignored by git)
 
 Then you have to install some vagrant plugins and build your vagrant box:
@@ -63,7 +63,7 @@ ansible-playbook vagrant.yml -e python_version=3
 
 ```
 mkvirtualenv pythonkc
-git clone git@github.com:pythonkc/pythonkc.com.git
+git clone git@github.com:pythonkc/pythonkc-com.git
 cd pythonkc.com/pythonkc_site
 pip install -r requirements/project.txt
 python manage.py runserver
@@ -77,11 +77,9 @@ See: docs/local_development
 
 
 
-[Vagrant]: https://www.vagrantup.com/downloads.html
-[VirtualBox]: https://www.virtualbox.org
-[shell provisioner]: http://docs.vagrantup.com/v2/provisioning/shell.html
-[ansible provisioner]: http://docs.vagrantup.com/v2/provisioning/ansible.html
-[our repository]: https://github.com/pythonkc/pythonkc.com
-[meetup api key]: https://secure.meetup.com/meetup_api/key/
-[django secret key]: http://www.miniwebtool.com/django-secret-key-generator/
-
+[ansible]: http://docs.vagrantup.com/v2/provisioning/ansible.html
+[django]: http://www.miniwebtool.com/django-secret-key-generator/
+[meetup]: https://secure.meetup.com/meetup_api/key/
+[shell]: http://docs.vagrantup.com/v2/provisioning/shell.html
+[vagrant]: https://www.vagrantup.com/downloads.html
+[virtualbox]: https://www.virtualbox.org
